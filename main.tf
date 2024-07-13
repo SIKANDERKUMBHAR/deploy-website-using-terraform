@@ -42,8 +42,8 @@ resource "aws_iam_policy" "s3_policy" {
         ]
         Effect   = "Allow"
         Resource = [
-          "arn:aws:s3:::myfirstbucketforecommercewebsite",
-          "arn:aws:s3:::myfirstbucketforecommercewebsite/*"
+          "arn:aws:s3:::your-bucket-name",
+          "arn:aws:s3:::your-bucket-name/*"
         ]
       }
     ]
@@ -63,7 +63,7 @@ resource "aws_iam_instance_profile" "ec2_instance_profile" {
 resource "aws_instance" "testing_ubuntu" {
   ami           = "ami-060e277c0d4cce553"
   instance_type = "t2.micro"
-  key_name      = "new-main-acc-key"
+  key_name      = "existing-key-pair-name"
 
   iam_instance_profile = aws_iam_instance_profile.ec2_instance_profile.name
 
@@ -81,7 +81,7 @@ resource "aws_instance" "testing_ubuntu" {
               sudo snap install --classic aws-cli
               sudo rm /var/www/html/*
               sudo -i
-              aws s3 sync s3://myfirstbucketforecommercewebsite  /var/www/html/
+              aws s3 sync s3://your-bucket-name  /var/www/html/
               systemctl daemon-reload
               systemctl restart nginx
               EOF
