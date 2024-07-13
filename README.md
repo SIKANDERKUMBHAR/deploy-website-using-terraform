@@ -1,6 +1,7 @@
 
 ```markdown
-# Deploy Static Website Using One Terraform Command
+# Deploy a Static Website Using a Single Terraform Command
+
 
 This project is to deploy a static website in AWS EC2 instance and S3 bucket using Terraform.
 
